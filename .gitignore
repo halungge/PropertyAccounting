@@ -22,7 +22,7 @@ hs_err_pid*
 
 #Build target, and generated files
 target/
-propertyTestingSample.iml
+*.iml
 
 
 
