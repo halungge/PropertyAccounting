@@ -16,8 +16,8 @@ import static org.junit.Assume.assumeThat;
 @RunWith(JUnitQuickcheck.class)
 public class CalculatorProperties {
 
-    @Property
-    public void isCommutative(BigDecimal a, BigDecimal b){
+    @Property(trials=2)
+    public void isCommutative(@When(seed=3L)BigDecimal a, @When(seed=45L)BigDecimal b){
         System.out.printf("testing with a= %2.10f  and b=%2.10f\n", a, b);
         assertEquals(Calculator.add(a, b), Calculator.add(b,a));
     }
@@ -26,5 +26,5 @@ public class CalculatorProperties {
     public void zeroIsNeutralElement(BigDecimal a){
         assertEquals(a, Calculator.add(a, BigDecimal.ZERO));
     }
-    
+
 }
