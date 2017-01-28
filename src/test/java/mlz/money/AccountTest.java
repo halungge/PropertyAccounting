@@ -61,7 +61,7 @@ public class AccountTest {
 
     //fails due to missing generator
     @Property
-    public void depositedAmountAddsToBalance(Money amount){
+    public void depositedAmountAddsToBalance(@From(MoneyGenerator.class) Money amount){
         account.deposit(amount);
         assertTrue("balance should be equal to amount", amount.value().compareTo(account.getBalance()) == 0);
     }
