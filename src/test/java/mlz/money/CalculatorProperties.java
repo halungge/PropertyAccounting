@@ -27,7 +27,7 @@ public class CalculatorProperties {
         assertEquals(a, Calculator.add(a, BigDecimal.ZERO));
     }
 
-    @Property
+    @Property(shrink = false)
     public void additionIncreasesAmount(BigDecimal a, BigDecimal b){
         System.out.printf("trying with with a= %2.4f  and b=%2.4f\n", a, b);
         assertTrue("sum is smaller than original value a = " + a, Calculator.add(a, b).compareTo(a) >= 0);
