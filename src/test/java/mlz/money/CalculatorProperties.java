@@ -29,10 +29,16 @@ public class CalculatorProperties {
 
     @Property
     public void additionIncreasesAmount(BigDecimal a, BigDecimal b){
-        System.out.printf("trying with with a= %2.4f  and b=%2.4f\n", a, b);
+        //System.out.printf("trying with with a= %2.4f  and b=%2.4f\n", a, b);
         assumeThat(b, greaterThan(BigDecimal.ZERO));
-        System.out.printf("assert with a= %2.4f  and b=%2.4f\n", a, b);
+        //System.out.printf("assert with a= %2.4f  and b=%2.4f\n", a, b);
         assertTrue("sum is smaller than original value a = " + a, Calculator.add(a, b).compareTo(a) >= 0);
     }
+
+    @Property
+    public void fixAdditionIncreasesAmountByConfiguringGenerator(BigDecimal a, @InRange(min = "0")BigDecimal b){
+        assertTrue("sum is smaller than original value a = " + a, Calculator.add(a, b).compareTo(a) >= 0);
+    }
+
 
 }
