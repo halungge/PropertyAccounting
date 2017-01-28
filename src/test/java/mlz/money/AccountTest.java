@@ -34,6 +34,13 @@ public class AccountTest {
     }
 
     @Test
+    public void depositedMoneyAddsToBalance() {
+        BigDecimal amount = new BigDecimal("13.50");
+        account.deposit(new Money(amount));
+        assertTrue("balance is not 13.50", amount.compareTo(account.getBalance()) == 0);
+    }
+
+    @Test
     public void depositTwiceAddsToBalance() throws Exception {
         //same as before
         account.deposit(Arrays.asList(Coin.QUARTER, Coin.QUARTER, Coin.FIVE, Coin.FIVE, Coin.ONE));
