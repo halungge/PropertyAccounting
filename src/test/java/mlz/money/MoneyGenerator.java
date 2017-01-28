@@ -21,6 +21,13 @@ public class MoneyGenerator extends Generator<Money> {
         final double value = random.nextDouble(-10000, 10000);
         return new Money(new BigDecimal(value));
     }
+    //add shrinking, by reverting to the shrinking mechano of the BigDecimalGenerator
+    @Override
+    public List<Money> doShrink(SourceOfRandomness random, Money larger){
+        List<BigDecimal> shrinkedAmounts = gen().type(BigDecimal.class).doShrink(random, larger.value());
+        return shrinkedAmounts.stream().map(bd -> new Money(bd)).collect(Collectors.toList());
+
+    }
 
 
 }

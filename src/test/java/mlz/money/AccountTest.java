@@ -79,9 +79,9 @@ public class AccountTest {
     public void accountBalanceNeverDropsBelowZero(@From(MoneyGenerator.class) Money deposit, @From(MoneyGenerator.class) Money withdrawal){
         account.deposit(deposit);
         account.withdraw(withdrawal);
-        assertTrue(account.getBalance().compareTo(BigDecimal.ZERO) >= 0);
+        assertTrue("account balance is < 0", account.getBalance().compareTo(BigDecimal.ZERO) >= 0);
     }
 
-    
+
 
 }
