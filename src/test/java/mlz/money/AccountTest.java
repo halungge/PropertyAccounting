@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+@RunWith(JUnitQuickcheck.class)
 public class AccountTest {
     private Account account;
     @Before
@@ -58,11 +59,12 @@ public class AccountTest {
         assertTrue(" balance " + account.getBalance() + " was not 4.30", new BigDecimal("4.30").compareTo(account.getBalance())==0 );
     }
 
-
-
-
-
-
+    //fails due to missing generator
+    @Property
+    public void depositedAmountAddsToBalance(Money amount){
+        account.deposit(amount);
+        assertTrue("balance should be equal to amount", amount.value().compareTo(account.getBalance()) == 0);
+    }
 
 
 
