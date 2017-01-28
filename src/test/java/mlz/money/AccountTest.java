@@ -66,6 +66,22 @@ public class AccountTest {
         assertTrue("balance should be equal to amount", amount.value().compareTo(account.getBalance()) == 0);
     }
 
+    @Property
+    public void depositMoneyIncreasesBalance(@From(MoneyGenerator.class) Money amount1, @From(MoneyGenerator.class) Money amount2){
+        account.deposit(amount1);
+        account.deposit(amount2);
+        assertTrue("balance should be larger than amount1", amount1.value().compareTo(account.getBalance()) <= 0);
+        assertTrue("balance should be larger than amount2", amount2.value().compareTo(account.getBalance()) <= 0);
 
+    }
+
+    @Property
+    public void accountBalanceNeverDropsBelowZero(@From(MoneyGenerator.class) Money deposit, @From(MoneyGenerator.class) Money withdrawal){
+        account.deposit(deposit);
+        account.withdraw(withdrawal);
+        assertTrue(account.getBalance().compareTo(BigDecimal.ZERO) >= 0);
+    }
+
+    
 
 }

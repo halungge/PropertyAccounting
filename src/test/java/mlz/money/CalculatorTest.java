@@ -36,11 +36,5 @@ public class CalculatorTest {
     }
 
 
-    @Test
-    public void addNegativeAmountDoesNotFallBelowZero(){
-        BigDecimal amount1 = new BigDecimal("-2.3");
-        BigDecimal amount2 = new BigDecimal("2.0");
-        assertTrue(new BigDecimal("0.0").compareTo(Calculator.add(amount2, amount1)) == 0);
-    }
 
 }
