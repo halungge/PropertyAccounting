@@ -26,7 +26,9 @@ public class Account {
     }
 
     public void withdraw(Money sum){
-        balance = Calculator.add(balance, sum.value().negate());
+
+        BigDecimal addedAmount = Calculator.add(balance, sum.value().negate());
+        balance = addedAmount.compareTo(BigDecimal.ZERO) < 0? BigDecimal.ZERO:addedAmount;
     }
 
     private BigDecimal newBalance(BigDecimal balance, List<Coin> increment){
