@@ -32,7 +32,7 @@ public class Account {
     }
 
     private BigDecimal newBalance(BigDecimal balance, List<Coin> increment){
-        return increment.stream().map(m -> m.value()).reduce(balance, Calculator::add);
+        return increment.stream().map(Coin::value).reduce(balance, Calculator::add);
     }
 
     public void deposit(List<Coin> coins){
